@@ -1,0 +1,11 @@
+#mapArea {
+	/*background-color: #99d;*/
+}
+
+#controlsArea {
+	background-color: #8dd;
+}
+
+#map td {
+	outline: 1px dotted #ccc;
+}
