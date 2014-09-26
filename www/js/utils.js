@@ -22,3 +22,13 @@ function TokenStream( string )
 	}
 	return this;
 }
+
+function GetIndex( item, array )
+{
+	for( key in array )
+	{
+		if( item === array[key] )
+			return key;
+	}
+	return null;
+}

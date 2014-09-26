@@ -26,7 +26,7 @@ div#debug p {
 	table-layout: fixed;
 	border-collapse: collapse;
 }
-
+/*
 	#map .grass {
 		background-color: green;
 		background: url("../sprites/grass.png") no-repeat;
@@ -36,7 +36,6 @@ div#debug p {
 		background-color: #44f;
 		background: url("../sprites/river.png") no-repeat;
 		background-size: 300% 400%;
-		/*background-position: -64px -64px;*/
 	}
 	#map .bad {
 		background-color: purple;
@@ -47,4 +46,4 @@ div#debug p {
 		background-color: green;
 		background: url("../sprites/bridge.png") no-repeat;
 		background-size: 200% 100%;
-	}
+	}*/

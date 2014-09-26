@@ -15,8 +15,6 @@ var Map = {
 function MapInit( container, width, height )
 {
 	Map.container = container;
-	//Map.pixelSize.width = width;
-	//Map.pixelSize.height = height;
 }
 
 function MapFromString( mapString )
@@ -35,41 +33,23 @@ function MapFromString( mapString )
 
 	Map.container.height = Map.height * Map.cellSize;
 
+	// Init Resources
+	Sprites.Initialize( Map.cellSize );
+	TileTypes.Initialize();
+
+	// cells
 	Map.cells = new Array( Map.height );
 	for( var x = 0; x < Map.height; x++ ) 
 	{
 		Map.cells[x] = new Array(Map.width);
 		for (var y = 0; y < Map.width; y++)
 		{
-			Map.cells[x][y] = new Cell( x, y, null );
 			if (!stream.eof)
 				token = stream.NextToken( " " );
 			else
-				token = "";
+				token = "bad";
 
-			// Set tile type
-			switch( token )
-			{
-				case "G":
-				{
-					Map.cells[x][y].type =  new TypeObject( "grass" );
-					break;
-				}
-				case "W":
-				{
-					Map.cells[x][y].type = new TypeObject( "river" );
-					break;
-				}
-				case "B":
-				{
-					Map.cells[x][y].type = new TypeObject( "bridge" );
-					break;
-				}
-				default:
-				{
-					Map.cells[x][y].type = new TypeObject( "bad" );
-				}
-			}
+			Map.cells[x][y] = new Cell( x, y, TileTypes[ token ] );
 		}
 	};
 
@@ -92,15 +72,17 @@ function MapRebuild()
 		for (var y = 0; y < Map.cells[x].length; y++) 
 		{
 			var td = document.createElement( "td" );
+			Map.cells[x][y].elem = td;
 			td.style.width = Map.cellSize + "px";
 			td.className = Map.cells[x][y].type.name;
+
+			Sprites.Apply( td, Map.cells[x][y].type.sprite, GetConnectedSides( Map.cells[x][y] ) );
 			tr.appendChild( td );
 
-			Map.cells[x][y].elem = td;
 		}
 		table.appendChild( tr );
 	};
-	MapFixTiles();
+	//MapFixTiles();
 	Map.container.elem.appendChild( table );
 }
 
@@ -124,16 +106,46 @@ function CellGetNeighbor( offset )
 	targetX = this.coords.x + offset.x;
 	targetY = this.coords.y + offset.y;
 
-	if ( targetX < 0 || targetX >= Map.height ) 
+	if ( targetX < 0 || targetX >= Map.height || targetY < 0 || targetY >= Map.width ) 
 	{
-		return {type: { name: "river"} };
-	};
-	if ( targetY < 0 || targetY >= Map.width ) 
-	{
-		return {type: { name: "river"} };
+		return this;
 	};
 
 	return Map.cells[targetX][targetY];
+}
+
+function GetConnectedSides( cell )
+{
+	var connectedSides = 0;
+	var OFFSET = {
+		N: 	{ x: -1, y:  0 },
+		S: 	{ x:  1, y:  0 },
+		E: 	{ x:  0, y:  1 },
+		W: 	{ x:  0, y: -1 },
+		Ne: 	{ x: -1, y:  1 },
+		Nw: 	{ x: -1, y: -1 },
+		Se: 	{ x:  1, y:  1 },
+		Sw: 	{ x:  1, y: -1 },
+	}
+	for( key in OFFSET )
+	{
+		if ( cell.Neighbor( OFFSET[key] ) && Connected( cell, cell.Neighbor( OFFSET[key] ) ) ) 
+		{
+			connectedSides |= DIRECTION[key];
+		}
+	}
+	cell.elem.title = "_" + connectedSides;
+	return connectedSides;
+}
+
+function Connected( cellA, cellB )
+{
+	if (cellA.type.connectionClass && cellA.type.connectionClass.indexOf(cellB.type.name) != -1 )
+	{
+		return true;
+	}
+		
+	return false;
 }
 
 function MapFixTiles()

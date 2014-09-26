@@ -1,3 +1,4 @@
 bc_map.js
 
 1. Add support for larger water bodies (through diagonal tiles)
+2. Implement resource-driven tile system
