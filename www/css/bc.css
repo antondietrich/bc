@@ -13,6 +13,11 @@ div#debug {
 	background-color: rgba( 200, 200, 200, 0.8 );
 }
 
+div#debug p {
+	padding: 1px 15px;
+	float: left;
+}
+
 #mapArea, #controlsArea {
 	float: left;
 }
@@ -30,10 +35,16 @@ div#debug {
 	#map .river {
 		background-color: #44f;
 		background: url("../sprites/river.png") no-repeat;
-		background-size: 100% 100%;
+		background-size: 300% 400%;
+		/*background-position: -64px -64px;*/
 	}
 	#map .bad {
 		background-color: purple;
 		background: url("../sprites/bad.png") no-repeat;
 		background-size: 100% 100%;
+	}
+	#map .bridge {
+		background-color: green;
+		background: url("../sprites/bridge.png") no-repeat;
+		background-size: 200% 100%;
 	}

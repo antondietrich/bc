@@ -48,7 +48,7 @@ function EngineStart()
 	Engine.viewport.appendChild( Engine.controlsArea.elem );
 
 	// map
-	var mapString = "21 13 G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G G W W W W G G G G G G G G G G G G G W W W W W G G G G G G G G G G G G G G G W W G G G G G G G G G G G G G G G G G W W W G G G G G G G G G G G G G G G G G W W G G G G G G G G G G G G G G G W W W W W W G G G G G G G G G G G G G W W W G G W W W G G G G G G G G G G G G G W G G G G G G G G G G G G G G G G G G G G W G G G G G G G G G G G G G G G G G G G G W G G G G G G G G G G G G G G G G G ";
+	var mapString = "21 13 G G G G G W G G G G G G G G G G G G G G G G G G G G W G G G G G G G G G G G G G G G G G G G G W W G G G G G G G G G G G G G G G G G G G G W W G G G G G G G G G W W W W G G G G G G G B G G G G G W W B W W G G G G G G G G G G W G G G G W W G G G G G G G G G G G G G G W G G W W W G G G G G G G G G G G G G G G W G W W G G G G G G G G G G G G G G G W W W W W G G G G G G G G G G G G G G W W W G W G G G G G G G G G G G G G G G G W G G G W W G G G G G G G G G G G G G G G W G G G G W W G G G G G G G G G G G G G G W G G G G G W G G G G G G G G G G G ";
 	Map.Initialize( Engine.mapArea, Engine.mapArea.width, Engine.mapArea.height );
 	Map.FromString( mapString );
 }
