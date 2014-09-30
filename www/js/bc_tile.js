@@ -30,6 +30,7 @@ function TileTypeInit()
 	TileTypes.W = new TileType( "river", "river, bridge", 0.0, Sprites.river );
 	TileTypes.B = new TileType( "bridge", "river", 1.2, Sprites.bridge );
 	TileTypes.R = new TileType( "road", "road, bridge", 1.6, Sprites.road );
+	TileTypes.C = new TileType( "wall", null, 0.0, Sprites.wall );
 
-	TileTypes.bad = new TileType( "bad", null, 0.0, Sprite.bad );
+	TileTypes.bad = new TileType( "bad", null, 0.0, Sprites.bad );
 }

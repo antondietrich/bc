@@ -18,32 +18,77 @@ div#debug p {
 	float: left;
 }
 
-#mapArea, #controlsArea {
+#mapArea {
 	float: left;
 }
+#controlsArea {
+	float: right;
+}
 
-#map {
+.mapLayer {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+/* map layer 0 */
+#terrain {
 	table-layout: fixed;
 	border-collapse: collapse;
+	background-image: url("../sprites/river.gif");
+	z-index: 0;
 }
-/*
-	#map .grass {
-		background-color: green;
-		background: url("../sprites/grass.png") no-repeat;
-		background-size: 100% 100%;
+
+/* map layer 9 */
+#grid {
+	background-image: url("../sprites/grid.png");
+	z-index: 900;
+}
+
+/********************
+	Controls
+********************/
+#layersControl {
+	border: 1px solid #bbb;
+	margin-right: 10px;
+	margin-top: 15px;
+	padding: 0 10px;
+}
+	#layersControl h3 {
+		font-weight: 300;
+		text-align: center;
+		width: 7ex;
+		background-color: #eee;
+		margin: -0.7em auto 0.5em auto;
 	}
-	#map .river {
-		background-color: #44f;
-		background: url("../sprites/river.png") no-repeat;
-		background-size: 300% 400%;
+	#layersControl div {
+		position: relative;
 	}
-	#map .bad {
-		background-color: purple;
-		background: url("../sprites/bad.png") no-repeat;
-		background-size: 100% 100%;
+
+	#layersControl label {
+		display: block;
+		padding-left: 16px;
+		cursor: pointer;
+		margin-bottom: 0.7em;
+		margin-right: 1em;
 	}
-	#map .bridge {
-		background-color: green;
-		background: url("../sprites/bridge.png") no-repeat;
-		background-size: 200% 100%;
-	}*/
+	#layersControl input {
+		visibility: hidden;
+	}
+		#layersControl input+span {
+			width: 13px;
+			height: 13px;
+			background-image: url("../sprites/check01.png");
+			background-position: -13px;
+			background-size: 300% 100%;
+			display: block;
+			position: absolute;
+			top: 3px;
+			left: 0px;
+		}
+		#layersControl input:hover+span {
+			background-position: -26px;
+		}
+		#layersControl input:checked+span {
+			background-position: 0px;
+		}

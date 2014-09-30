@@ -58,6 +58,7 @@ function SpritesInit( size )
 	Sprites.river = new Sprite( "river.png", [ SIDE.NE, SIDE.NW, SIDE.SE, SIDE.SW, SIDE.NS, SIDE.EW, SIDE.NEW, SIDE.SEW, SIDE.NSE, SIDE.NSW ]);
 	Sprites.road = new Sprite( "road.png", [ SIDE.NE, SIDE.NW, SIDE.SE, SIDE.SW, SIDE.NS, SIDE.EW, SIDE.NEW, SIDE.SEW, SIDE.NSE, SIDE.NSW, SIDE.NSEW ]);
 	Sprites.bridge = new Sprite( "bridge.png", [ SIDE.NS, SIDE.EW ]);
+	Sprites.wall = new Sprite( "wall.png", [ 0 ]);
 
 	Sprites.bad = new Sprite( "bad.png", [ 0 ] );
 }

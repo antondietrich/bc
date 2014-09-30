@@ -34,7 +34,7 @@ function EngineStart()
 	Debugger.SetLine( "ClientArea", Engine.clientArea.width + " &times; " + Engine.clientArea.height );
 
 	// layout & cell size
-	Engine.controlsArea.width = 200; 
+	Engine.controlsArea.width = 200;
 	Engine.mapArea.width = Engine.clientArea.width - Engine.controlsArea.width;
 
 	Engine.mapArea.elem = document.createElement("div");
@@ -47,8 +47,11 @@ function EngineStart()
 	Engine.controlsArea.elem.id = "controlsArea";
 	Engine.viewport.appendChild( Engine.controlsArea.elem );
 
+	// controls
+	LayersControl.Initialize( Engine.controlsArea.width );
+
 	// map
-	var mapString = "21 13 G G G G G W G G G G G G G G G R G G G G G G G G G G W G G G G G R R R R R R R R R R G G G G G W W G G G R R G G G R G G G G G R R R R G G W W G R R G G G G R G W W W W G G G R R R R B R R G G G W W B W W G G G G G G G G G G W G G G G W W G R G G G G G G G G G G G G W G G W W W G G R G G G G G G G G G G G G W G W W G G G G R G G G G G G G G G G W W W W W G G G G G R R G G G G G G G W W W G G G G G G G G G G R R R R R G G G W G G G G G G G G G G G G G G G G G G G G W G G G G G G G G G G G G G G G G G G G G W G G G G G G G G G G G G G G G G G ";
+	var mapString = "21 13 G G G G G W G G G G G G G G G R G G G G G G G G G G W G G G G G R R R R R R R R R R G G G G G W W G G G R R G G G R G G G G G R R R R G G W W G R R G G G G R G W W W W G G G R R R R B R R G G G W W B W W G G G G G G G G G G W G G G G W W G R G G G G G G G G G G G G W G G W W W G G R G G G G G G G G G G G G W G W W G G G G R G G G G G G G G G G W W W W W G G G G G R R G G G G G G G W W W G G G G G G G C C G R R R R R G G G W G G G G G G G G C G G C G G G G G G G G W G G G G G G G G G G G G G G G G G G G G W G G G G G G G G G G G G G G G G G ";
 	Map.Initialize( Engine.mapArea, Engine.mapArea.width, Engine.mapArea.height );
 	Map.FromString( mapString );
 }
